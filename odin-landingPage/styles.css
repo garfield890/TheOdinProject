@@ -67,3 +67,45 @@ h1 {
     border: none;
     border-radius: 8px;
 }
+
+.random_info {
+    text-align: center;
+    padding-top: 40px;
+    font-size: 36px;
+    color: #1F2937;
+    font-weight: 900;
+}
+
+.info_panels {
+    display: flex;
+    justify-content: center; /* Center-align the cards */
+    flex-wrap: wrap; /* Allow cards to wrap on smaller screens */
+    gap: 30px; /* Space between cards */
+    padding: 50px 0; /* Add vertical padding to the section */
+}
+
+.info_card {
+    display: flex;
+    flex-direction: column; /* Stack image and text */
+    align-items: center; /* Center-align card content */
+    width: 150px; /* Fixed width for uniform card sizing */
+    text-align: center; /* Center-align text */
+    border: 2px solid #3B82F6; /* Add a blue border around cards */
+    border-radius: 10px; /* Rounded corners for cards */
+    padding: 10px; /* Add padding inside the card */
+    background-color: #fff; /* Add a white background */
+}
+
+.info_image {
+    width: 100%; /* Image takes the full width of the card */
+    height: auto; /* Maintain aspect ratio */
+    max-height: 150px; /* Ensure consistent image height */
+    object-fit: cover; /* Scale and crop images nicely */
+    border-radius: 8px; /* Match card border radius */
+}
+
+.info_text {
+    margin-top: 10px; /* Space between image and text */
+    font-size: 14px; /* Smaller font size for text */
+    color: #374151; /* Slightly darker text color */
+}

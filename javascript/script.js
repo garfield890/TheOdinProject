@@ -12,17 +12,12 @@ console.log(age);
 age = 54;
 console.log(age);
 
-const pi = 3.14;
+function favoriteAnimal(animal) {
+    return "My favorite animal is " + animal;
+}
 
-console.log((3 + 2) - 76 * (1 + 1))
-console.log(34 + 45);
+console.log(favoriteAnimal('Goat'));
 
-console.log(1+2+3+4+5+6);
-console.log((4+6+9) / 77);
-
-let a = 10;
-console.log(a);
-let b = 9 * a;
-console.log(b);
-
-console.log((57-13)/57);
+function add7(num) {
+    return num + 7;
+}

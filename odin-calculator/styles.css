@@ -1,0 +1,7 @@
+.calc {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 1185px;
+    width: 3440px;
+}

@@ -28,6 +28,3 @@ function operate(val1, operation, val2) {
     }
 }
 
-let val1 = 0;
-let val2 = 0;
-let operation = "+";

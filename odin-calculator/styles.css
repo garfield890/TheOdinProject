@@ -13,7 +13,7 @@
 .main_calc {
     display: flex;
     width: 500px;
-    height: 650px;
+    height: 675px;
     background-color: grey;
     flex-wrap: wrap;
     box-sizing: border-box;
@@ -29,7 +29,7 @@
     display: flex;
     align-items: center;
     justify-content: right;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Roboto Mono', monospace;
     font-size: 50px;
     width: 460px;
     height: 65px;

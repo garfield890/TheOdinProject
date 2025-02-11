@@ -35,29 +35,32 @@ numbers.forEach(button => {
     button.addEventListener("click", function() {
         vals[index] += this.innerText;
         result.innerText = vals[index];
-        console.log(vals);
     });
 });
 
 const clear = document.querySelector(".clear");
 clear.addEventListener("click", function() {
-    vals[index] = "";
-    result.innerText = vals[index];
-    console.log(vals);
+    vals = ["", "", ""];
+    result.innerText = "";
 });
 
 const operators = document.querySelectorAll(".operator");
 operators.forEach(button => {
     button.addEventListener("click", function () {
-        if (index === 1 || (index + 1) > 2) {
+        if (index === 1) {
             result.innerText = "INVALID";
+        } else if ((index + 1) > 2) {
+            let tempVal = operate(parseInt(vals[0]), vals[1], parseInt(vals[2]));
+            result.innerText = tempVal;
+            vals = ["", "", ""];
+            vals[0] = tempVal.toString();
+            vals[1] = this.innerText;
         } else {
             index += 1;
             vals[index] = this.innerText;
             result.innerText = vals[index];
             index += 1;
         }
-        console.log(vals);
     })
 });
 
@@ -65,18 +68,13 @@ const equals = document.querySelector(".equals_button");
 equals.addEventListener("click", function () {
     if (index != 2) {
         result.innerText = "INVALID";
+    } else if (vals[2] == "0" && vals[1] == "/") {
+        result.innerText = "you fool";
+        vals = ["", "", ""];
+        index = 0;
     } else {
-        if (vals[1] == "+") {
-            result.innerText = operate(parseInt(vals[0]), "+", parseInt(vals[2]));
-        } else if (vals[1] == "-") {
-            result.innerText = operate(parseInt(vals[0]), "-", parseInt(vals[2]));
-        } else if (vals[1] == "*") {
-            result.innerText = operate(parseInt(vals[0]), "*", parseInt(vals[2]));
-        } else if (vals[1] == "/") {
-            result.innerText = operate(parseInt(vals[0]), "/", parseInt(vals[2]));
-        }
+        result.innerText = operate(parseInt(vals[0]), vals[1], parseInt(vals[2]));
         index = 0;
         vals = ["", "", ""];
     }
-    console.log(vals);
 });

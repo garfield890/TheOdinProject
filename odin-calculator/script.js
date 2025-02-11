@@ -38,6 +38,14 @@ numbers.forEach(button => {
     });
 });
 
+const deleteButton  = document.querySelector(".delete");
+deleteButton.addEventListener("click", function() {
+    if (vals[index].length > 0) {
+        vals[index] = vals[index].slice(0, -1);
+    }
+    result.innerText = vals[index];
+});
+
 const clear = document.querySelector(".clear");
 clear.addEventListener("click", function() {
     vals = ["", "", ""];

@@ -39,7 +39,7 @@
     padding-right: 5px;
 }
 
-.number_button, .clear, .decimal, .operator {
+.number_button, .clear, .delete, .operator {
     font-family: Arial, Helvetica, sans-serif;
     display: flex;
     width: 75px;
@@ -55,7 +55,7 @@
     border-radius: 10px;
 }
 
-.number_button:hover, .clear:hover, .decimal:hover, .operator:hover {
+.number_button:hover, .clear:hover, .delete:hover, .operator:hover {
     background-color: #333;
     box-shadow: 0 0 10px cyan;
 }

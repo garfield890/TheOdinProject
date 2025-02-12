@@ -50,14 +50,15 @@ const clear = document.querySelector(".clear");
 clear.addEventListener("click", function() {
     vals = ["", "", ""];
     result.innerText = "";
+    index = 0;
 });
 
 const operators = document.querySelectorAll(".operator");
 operators.forEach(button => {
     button.addEventListener("click", function () {
-        if (index === 1) {
+        if (index === 2 && vals[2] === "") {
             result.innerText = "INVALID";
-        } else if ((index + 1) > 2) {
+        } else if (index === 2) {
             let tempVal = operate(parseInt(vals[0]), vals[1], parseInt(vals[2]));
             result.innerText = tempVal;
             vals = ["", "", ""];
@@ -74,7 +75,7 @@ operators.forEach(button => {
 
 const equals = document.querySelector(".equals_button");
 equals.addEventListener("click", function () {
-    if (index != 2) {
+    if (vals[2] === "") {
         result.innerText = "INVALID";
     } else if (vals[2] == "0" && vals[1] == "/") {
         result.innerText = "you fool";

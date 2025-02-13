@@ -1,3 +1,5 @@
+require 'pry-byebug'
+
 num_array = [0, 1, 2, 3, 4, 5]
 str_array = ["l", "r", "lrlrl"]
 newArr = Array.new(3, 7)

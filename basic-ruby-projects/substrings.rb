@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 def substrCalc(words, dictionary)
   arr = words.downcase.split
   resultHash = Hash.new(0)

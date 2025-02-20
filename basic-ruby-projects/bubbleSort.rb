@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 def bubbleSort(arr)
-  for _ in (0..arr.length - 1)
+  (0..arr.length - 1).each do |_|
     arr.each_with_index do |_val, index|
       next unless index < arr.length - 1
 

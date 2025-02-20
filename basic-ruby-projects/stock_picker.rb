@@ -1,9 +1,9 @@
-# traverse through array twice (O(n^2))
+# frozen_string_literal: true
 
 def stock_picker(arr)
   values = []
-  for i in (0..arr.length - 2)
-    for j in (i + 1..arr.length - 1)
+  (0..arr.length - 2).each do |i|
+    (i + 1..arr.length - 1).each do |j|
       values.push([i, j, arr[j] - arr[i]])
     end
   end

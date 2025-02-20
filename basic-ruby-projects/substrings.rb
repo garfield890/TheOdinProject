@@ -3,14 +3,12 @@ def substrCalc(words, dictionary)
   resultHash = Hash.new(0)
   arr.each do |word|
     dictionary.each do |sample|
-      if (word.include?(sample))
-        resultHash[sample]+=1
-      end
+      resultHash[sample] += 1 if word.include?(sample)
     end
   end
-  return resultHash
+  resultHash
 end
 
-dictionary = ["below","down","go","going","horn","how","howdy","it","i","low","own","part","partner","sit"]
-puts substrCalc("below", dictionary)
+dictionary = %w[below down go going horn how howdy it i low own part partner sit]
+puts substrCalc('below', dictionary)
 puts substrCalc("Howdy partner, sit down! How's it going?", dictionary)

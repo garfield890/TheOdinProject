@@ -16,3 +16,5 @@ puts read.gets
 
 write.puts "Hello world"
 write.puts 'goodbye world'
+
+File.open("input.txt")

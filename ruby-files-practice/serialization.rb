@@ -1,4 +1,5 @@
 require 'yaml'
+require 'json'
 
 puts YAML.load File.read('test.yaml')
 
@@ -24,6 +25,19 @@ class Person
     p data
     self.new(data[:name], data[:age], data[:gender])
   end
+
+  def to_json
+    JSON.dump ({
+      :name => @name,
+      :age => @age,
+      :gender => @gender
+    })
+  end
+
+  def self.from_json(string)
+    data = JSON.load string
+    self.new(data['name'], data['age'], data['gender'])
+  end
 end
 
 p = Person.new "David", 28, "male"
@@ -34,3 +48,7 @@ p = Person.from_yaml(p.to_yaml)
 puts "Name #{p.name}"
 puts "Age #{p.age}"
 puts "Gender #{p.gender}"
+
+puts JSON.load File.read("test.json")
+
+

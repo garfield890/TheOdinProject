@@ -16,14 +16,26 @@
 
 # write.puts "Hello world"
 # write.puts 'goodbye world'
-
-File.open("input.txt", "r") do |file|
-  for line in file.readlines()
-    puts line
-  end
+f = File.open("input.txt")
+while line = f.gets do
+  puts line
 end
+f.close
 
-File.open("output.txt", "r+") do |file|
+File.open("output1.txt", "r+") do |file|
   file.readline()
   file.write("\nYou are a bold one...")
+  puts File.exist? "input.txt"
+  puts File.mtime "output1.txt"
+  puts file.size
+  # File.rename "output.txt", "output1.txt"
 end
+
+Dir.mkdir "tmp"
+puts Dir.exist? "tmp"
+puts Dir.pwd
+sleep(5)
+Dir.rmdir "tmp"
+Dir.mkdir "tmp"
+fls = Dir.entries '.'
+puts fls.inspect

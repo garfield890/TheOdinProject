@@ -67,17 +67,34 @@ contents = CSV.open(
 )
 template_letter = File.read('form_letter.erb')
 erb_template = ERB.new template_letter
+hour_counts = Hash.new(0)
+day_counts = Hash.new(0)
 
 contents.each do |row|
   id = row[0]
   name = row[:first_name]
   phone_number = row[:homephone]
+  hour = row[1]
 
   zipcode = clean_zipcode(row[:zipcode])
   phone_number = clean_phone_numbers(phone_number)
+  parsed_time = Time.strptime(hour, "%m/%d/%y %H:%M")  # Parse using correct format
+  hour = parsed_time.hour  # Extract hour (0-23)
+  day = parsed_time.wday
+  hour_counts[hour] += 1
+  day_counts[day] += 1
 
   legislators = legislators_by_zipcode(zipcode)
   form_letter = erb_template.result(binding)
 
   save_thank_you_letter(id,form_letter)
+end
+
+sorted_hours = hour_counts.sort_by { |hour, count| -count }
+sorted_days = day_counts.sort_by { |day, count| -count }
+sorted_hours.each do |hour, count|
+  puts "Hour #{hour}: #{count} registrations"
+end
+sorted_days.each do |day, count|
+  puts "Day #{day}: #{count} registrations"
 end

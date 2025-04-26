@@ -1,6 +1,6 @@
 grade = 'C'
 
-case grade
+result = case grade
 in 'A' then puts 'Amazing effort'
 in 'B' then puts 'Good work'
 in 'C' then puts 'Well done'
@@ -12,4 +12,4 @@ login = { username: 'hornby', password: 'iliketrains' }
 
 login => { username: username }
 
-puts "Logged in with username #{username}"
+puts result

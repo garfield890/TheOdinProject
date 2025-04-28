@@ -41,3 +41,19 @@ case 0
 in 0 if value
   puts :match
 end
+
+# must be arary matched to array
+case age
+in [0...15] then puts :matchone
+else puts :nomatchone
+end
+
+arr = [1, 2, 3]
+
+case arr
+in [Integer, Integer, *]
+  puts :match
+end
+
+
+

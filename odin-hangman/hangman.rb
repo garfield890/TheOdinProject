@@ -1,57 +1,59 @@
-require 'json'
+require "json"
 
-txtFile = File.open("google-10000-english-no-swears.txt", 'r');
-arrOfWords = txtFile.read
+txt_file = File.open("google-10000-english-no-swears.txt", "r")
+arr_of_words = txt_file.read
 
-arrOfWords = arrOfWords.split("\n")
-chosenWord = arrOfWords.sample
+arr_of_words = arr_of_words.split("\n")
+chosen_word = arr_of_words.sample
 
-until chosenWord.length >= 5 && chosenWord.length <= 12
-  chosenWord = arrOfWords.sample
-end
+chosen_word = arr_of_words.sample until chosen_word.length >= 5 && chosen_word.length <= 12
 
 lives = 6
-guessingArr = Array.new(chosenWord.length, "_") 
-shownArr = guessingArr.join(' ')
-missingArr = Array.new
-print shownArr; puts
+guessingArr = Array.new(chosen_word.length, "_")
+shownArr = guessingArr.join(" ")
+missingArr = []
+print shownArr
+puts
 
-while lives > 0
+while lives.positive?
   puts "Please guess a letter! Only the first char you enter will be taken. Enter 0 to save your game and try again later. Enter 1 to reload your saved game!"
   input = gets.chomp[0].downcase
   if input == "0"
-    data = { chosen_word: chosenWord, guessingarr: guessingArr, lives: lives}
+    data = { chosen_word: chosen_word, guessingarr: guessingArr, lives: lives }
     json_string = data.to_json
-    File.open("saved_game.json", "w").write(json_string)
+    File.write("saved_game.json", json_string)
     puts "Your game has been saved!!"
     break
   elsif input == "1"
-    json_string = File.open("saved_game.json", "r").read
+    json_string = File.read("saved_game.json")
     data = JSON.parse(json_string)
     lives = data["lives"]
-    chosenWord = data["chosen_word"]
+    chosen_word = data["chosen_word"]
     guessingArr = data["guessingarr"]
-    shownArr = guessingArr.join(' ')
+    shownArr = guessingArr.join(" ")
     puts "Your game has been reloaded!"
-    print shownArr; puts 
+    print shownArr
+    puts
     next
   end
-  if chosenWord.include? input
+  if chosen_word.include? input
     indexes = []
-    chosenWord.each_char.with_index { |char, i| indexes << i if char == input }
+    chosen_word.each_char.with_index { |char, i| indexes << i if char == input }
     indexes.each { |i| guessingArr[i] = input }
-    shownArr = guessingArr.join(' ')
-    print shownArr; puts
+    shownArr = guessingArr.join(" ")
+    print shownArr
+    puts
   else
-    puts "That is incorrect!! #{input} is not in the chosen word! You have #{lives-1} lives left!"
+    puts "That is incorrect!! #{input} is not in the chosen word! You have #{lives - 1} lives left!"
     missingArr.push(input)
     puts "Your wrong guesses are [#{missingArr.join(', ')}]"
-    print shownArr; puts
+    print shownArr
+    puts
     lives -= 1
   end
-  if guessingArr.join == chosenWord
-    puts "You have found the chosen word! The word was #{chosenWord}. Please play again!"
+  if guessingArr.join == chosen_word
+    puts "You have found the chosen word! The word was #{chosen_word}. Please play again!"
     break
   end
 end
-puts "You have run out of lives. The word was #{chosenWord}! Please try again!" if lives == 0
+puts "You have run out of lives. The word was #{chosen_word}! Please try again!" if lives.zero?

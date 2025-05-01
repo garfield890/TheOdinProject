@@ -6,9 +6,9 @@ test_scores = [
 ]
 
 teacher_mailboxes = [
-  ["Adams", "Baker", "Clark", "Davis"],
-  ["Jones", "Lewis", "Lopez", "Moore"],
-  ["Perez", "Scott", "Smith", "Young"]
+  %w[Adams Baker Clark Davis],
+  %w[Jones Lewis Lopez Moore],
+  %w[Perez Scott Smith Young]
 ]
 
 puts teacher_mailboxes[0][0]
@@ -30,15 +30,15 @@ teacher_mailboxes.flatten.each do |teacher|
 end
 
 vehicles = {
-  alice: {year: 2019, make: "Toyota", model: "Corolla"},
-  blake: {year: 2020, make: "Volkswagen", model: "Beetle"},
-  caleb: {year: 2020, make: "Honda", model: "Accord"}
+  alice: { year: 2019, make: "Toyota", model: "Corolla" },
+  blake: { year: 2020, make: "Volkswagen", model: "Beetle" },
+  caleb: { year: 2020, make: "Honda", model: "Accord" }
 }
 
 puts vehicles[:alice][:year]
 puts vehicles[:blake][:make]
 puts vehicles[:caleb][:model]
 
-vehicles[:dave] = {year: 2021, make: "Ford", model: "Escape"}
+vehicles[:dave] = { year: 2021, make: "Ford", model: "Escape" }
 vehicles[:dave][:color] = "red"
 vehicles.delete(:blake)

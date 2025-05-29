@@ -1,4 +1,4 @@
-require_relative "hashMap"
+require_relative "hashmap"
 
 test = HashMap.new(0.75, 16)
 test.set('apple', 'red')

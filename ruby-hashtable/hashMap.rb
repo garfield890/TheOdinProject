@@ -1,5 +1,6 @@
 class HashMap
-  attr_reader :load_factor, :capacity
+  attr_reader :load_factor, :capacity, :size
+
   def initialize(load_factor, capacity)
     @load_factor = load_factor
     @capacity = capacity
@@ -10,9 +11,9 @@ class HashMap
   def hash(key)
     hash_code = 0
     prime_number = 31
-       
-    key.each_char { |char| hash_code = prime_number * hash_code + char.ord }
-       
+
+    key.each_char { |char| hash_code = (prime_number * hash_code) + char.ord }
+
     hash_code
   end
 
@@ -22,23 +23,23 @@ class HashMap
 
     bucket.each do |pair|
       if pair[0] == key
-        pair[1] = value 
+        pair[1] = value
         return
       end
     end
     bucket << [key, value]
     @size += 1
 
-    if @size.to_f / @capacity > @load_factor
-      @capacity = @capacity * 2
-      old_table = @table
-      @table = Array.new(@capacity) { [] }
-      @size = 0
-      old_table.each do |bucket|
+    return unless @size.to_f / @capacity > @load_factor
+
+    @capacity *= 2
+    old_table = @table
+    @table = Array.new(@capacity) { [] }
+    @size = 0
+    old_table.each do |bucket|
       bucket.each do |key, value|
         set(key, value)
       end
-    end
     end
   end
 
@@ -75,36 +76,31 @@ class HashMap
     nil
   end
 
-  def size()
-    @size
-  end
-
-  def clear()
-    @table.each do |bucket|
-      bucket = nil
+  def clear
+    @table.each do |_bucket|
     end
   end
 
-  def keys()
+  def keys
     key_table = []
     @table.each do |bucket|
-      bucket.each { |pair| key_table << pair[0] } unless bucket.nil?
+      bucket&.each { |pair| key_table << pair[0] }
     end
     key_table
   end
 
-  def values()
+  def values
     value_table = []
     @table.each do |bucket|
-      bucket.each { |pair| value_table << pair[1] } unless bucket.nil?
+      bucket&.each { |pair| value_table << pair[1] }
     end
     value_table
   end
 
-  def entries()
+  def entries
     entry_table = []
     @table.each do |bucket|
-      bucket.each { |pair| entry_table << pair } unless bucket.nil?
+      bucket&.each { |pair| entry_table << pair }
     end
     entry_table
   end
